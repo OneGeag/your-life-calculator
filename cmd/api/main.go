@@ -31,7 +31,7 @@ func main() {
 	}
 
 	mux := http.NewServeMux()
-	mux.HandleFunc("/ping", app.ping)
+	mux.HandleFunc("/v1/ping", app.ping)
 
 	srv := http.Server{
 		Addr:    fmt.Sprintf(":%d", cfg.port),
