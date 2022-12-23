@@ -1,2 +1,2 @@
 make:
-	go run cmd/web/*
+	go run cmd/api/*

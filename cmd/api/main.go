@@ -7,12 +7,14 @@ import (
 	"os"
 )
 
+const version = "1.0.0"
+
 type config struct {
 	port int
 	env  string
 }
 
-type appilcation struct {
+type application struct {
 	config config
 	logger *log.Logger
 }
@@ -25,13 +27,13 @@ func main() {
 
 	logger := log.New(os.Stdout, "", log.Ldate|log.Ltime)
 
-	app := &appilcation{
+	app := &application{
 		config: cfg,
 		logger: logger,
 	}
 
 	mux := http.NewServeMux()
-	mux.HandleFunc("/v1/ping", app.ping)
+	mux.HandleFunc("/v1/healthcheck", app.healthcheckHandler)
 
 	srv := http.Server{
 		Addr:    fmt.Sprintf(":%d", cfg.port),
